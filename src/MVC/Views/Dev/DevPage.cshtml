@@ -1,0 +1,104 @@
+﻿@model MVC.ViewModels.DevPageViewModel;
+
+@{ViewData["Title"] = "";}
+
+<br>
+<br>
+<br>
+<br>
+
+<h1> Dev page </h1>
+<h5>Endpoints to different projects in this solution.</h5>
+<br>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Project</th>
+            <th scope="col">Link</th>
+            <th scope="col">Endpoint decorator</th>
+            <th scope="col">Notes and discoveries</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>IDP</th>
+            <td><a href="https://localhost:44327/Auth/Login" class="link-warning">/Auth/Login</a></td>
+            <td>None</td>
+            <td>If we login using this link instead of beaing redirected here after hitting an [Autorize] endpoint -> We are not redirected back to the MVC_client -> Thus we dont exchange the code token for the access token. THIS IS A DEV TEST, AND THE ENDUSER SHOULD NOT USE THIS.</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            <td><a href="https://localhost:44345/Register/Register" class="link-primary">/Register/Register</a></td>
+            <td>None</td>
+            <td>Will call an API in IDP</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            @if (Model.UserHasAdminRole)
+            {
+                <td><a href="https://localhost:44345/Users/Users" class="link-primary">/Users/Users</a></td>
+            }
+            else 
+            {
+                <td>Link shown when UserHasAdminRole </td>
+            }
+            <td>[Authorize]</td>
+            <td>Will call an API in IDP</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            @if (Model.UserHasAdminRole)
+            {
+                <td><a href="https://localhost:44345/Roles/Roles" class="link-primary">/Roles/Roles</a></td>
+            }
+            else
+            {
+                <td>Link shown when UserHasAdminRole </td>
+            }
+            <td>[Authorize]</td>
+            <td>Button invisible if not Role=Admin. Will call an API in IDP</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            <td><a href="https://localhost:44345/dev/AskGateway1_GetSecretForestInEurope" class="link-primary">/Dev/GetSecretForestInEurope</a></td>
+            <td>[Authorize]</td>
+            <td>Will call an API in Gateway1. Gateway1 will then get Auth as machine-to-machine to the API in API_Forest</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            <td><a href="https://localhost:44345/dev/AskGateway1_GetSecretMountainInEurope" class="link-primary">/Dev/GetSecretMountainInEurope</a></td>
+            <td>[Authorize]</td>
+            <td>Will call an API in Gateway1. Gateway1 will then get Auth as machine-to-machine to the API in API_Mountain</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            <td><a href="https://localhost:44345/dev/AskGateway2_GetSecretDesertInEurope" class="link-primary">/Dev/GetSecretDesertInEurope</a></td>
+            <td>[Authorize]</td>
+            <td>Will call an API in Gateway1. Gateway2 will then get Auth as machine-to-machine to the API in API_Desert</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            <td><a href="https://localhost:44345/dev/MVCSecret" class="link-primary">/dev/MVCSecret</a></td>
+            <td>[Authorize]</td>
+            <td>This endpoint does not call another [Authorize] taged API. Only an [Authorize] endpoint in MVC. Note that "local" calls will be accepted with valid Id-token and unvalid Access-tokens. Perhaps a best practise is to have identical lifetimes on these tokens.</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            <td><a href="https://localhost:44345/Dev/Token" class="link-warning">/Dev/Token</a></td>
+            <td>None</td>
+            <td>Show Access+Id+Refresh token. Not that only cookies/tookens in this browser session can be loaded. Close all browsers if encoutering problems.</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            <td><a href="https://localhost:44345/Dev/Logout" class="link-warning">/Dev/Logout</a></td>
+            <td>None</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+

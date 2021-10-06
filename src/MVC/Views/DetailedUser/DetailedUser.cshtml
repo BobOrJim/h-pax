@@ -1,0 +1,39 @@
+﻿@model MVC.ViewModels.DetailedUserViewModel
+
+@{
+    ViewData["Title"] = "";
+}
+
+<h2>@Model.Message</h2>
+
+<br>
+<a href="https://localhost:44345/Users/Users" class="link-primary">/Users/Users</a>
+<br>
+
+<h2>Username: @Model.UserName</h2>
+
+<br>
+<br>
+
+<h2>Roles: </h2>
+
+
+<form asp-controller="DetailedUser" asp-action="WriteRolesToUser" method="post">
+    <div class="form-check mb-3">
+        @for (int i = 0; i < Model.UsersRoles.Count; i++)
+        {
+            @Html.HiddenFor(m => m.UsersRoles[i].RoleName)
+            @Html.CheckBoxFor(m => m.UsersRoles[i].UserHasThisRole)
+            @Html.DisplayFor(m => m.UsersRoles[i].RoleName)
+            <br>
+        }
+        <input type="hidden" asp-for="UserName" value="@Model.UserName" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+
+
+
+
+
