@@ -1,18 +1,17 @@
-﻿using System;
+﻿using ProductCatalog.DbContexts;
+using ProductCatalog.Entities;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using WebShop.Data;
-using WebShop.Models;
-using WebShop.Models_DbSet;
 
-namespace WebShop.Infrastructure
+namespace ProductCatalog.Repository
 {
-    public class DataAccess : IDataAccess
+    public class ProductCatalogRepository : IProductCatalogRepository
     {
-        private readonly ApplicationDbContext applicationDbContext;
+        private readonly ProductCatalogDbContext applicationDbContext;
 
-        public DataAccess(ApplicationDbContext applicationDbContext)
+        public ProductCatalogRepository(ProductCatalogDbContext applicationDbContext)
         {
             this.applicationDbContext = applicationDbContext;
         }
