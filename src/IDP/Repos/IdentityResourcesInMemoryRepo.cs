@@ -23,6 +23,7 @@ namespace IDP.Repos
             new List<ApiResource>{
                 new ApiResource("APIGateway1", new string[]{ "role" }),
                 new ApiResource("APIGateway2", new string[]{ "role" }),
+                new ApiResource("APIGateway3", new string[]{ "role" }),
                 new ApiResource("API_Forest", new string[]{ "role" }),
                 new ApiResource("API_Mountain", new string[]{ "role" }),
                 new ApiResource("API_Desert", new string[]{ "role" }),
@@ -62,6 +63,7 @@ namespace IDP.Repos
                     AllowedScopes = {
                         "APIGateway1",
                         "APIGateway2",
+                        "APIGateway3",
                         IdentityServerConstants.StandardScopes.OpenId, //Add open ID layer, and give user and id token.
                         IdentityServerConstants.StandardScopes.Profile,
                     },

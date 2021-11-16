@@ -43,6 +43,7 @@ namespace IDP.Controllers.MVC
 
             if (result.Succeeded)
             {
+                var a = 12;
                 return Redirect(vm.ReturnUrl ?? uri.IDP);
             }
             return View("Login", new LoginViewModel { ReturnUrl = vm.ReturnUrl ?? uri.IDP });

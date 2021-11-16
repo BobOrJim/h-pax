@@ -39,10 +39,9 @@
             {
                 <td><a href="https://localhost:44345/Users/Users" class="link-primary">/Users/Users</a></td>
             }
-            else 
+            else
             {
-                <td>Link shown when UserHasAdminRole </td>
-            }
+    <td>Link shown when UserHasAdminRole </td>            }
             <td>[Authorize]</td>
             <td>Will call an API in IDP</td>
         </tr>
@@ -50,12 +49,10 @@
             <th>MVC</th>
             @if (Model.UserHasAdminRole)
             {
-                <td><a href="https://localhost:44345/Roles/Roles" class="link-primary">/Roles/Roles</a></td>
-            }
-            else
-            {
-                <td>Link shown when UserHasAdminRole </td>
-            }
+    <td><a href="https://localhost:44345/Roles/Roles" class="link-primary">/Roles/Roles</a></td> }
+                else
+                {
+    <td>Link shown when UserHasAdminRole </td>            }
             <td>[Authorize]</td>
             <td>Button invisible if not Role=Admin. Will call an API in IDP</td>
         </tr>
@@ -76,6 +73,12 @@
             <td><a href="https://localhost:44345/dev/AskGateway2_GetSecretDesertInEurope" class="link-primary">/Dev/GetSecretDesertInEurope</a></td>
             <td>[Authorize]</td>
             <td>Will call an API in Gateway1. Gateway2 will then get Auth as machine-to-machine to the API in API_Desert</td>
+        </tr>
+        <tr>
+            <th>MVC</th>
+            <td><a href="https://localhost:44345/WebShop/AskGateway3_GetAllProducts" class="link-primary">/WebShop/AskGateway3_GetAllProducts</a></td>
+            <td>[Authorize]</td>
+            <td>Will call an API in Gateway3.</td>
         </tr>
         <tr>
             <th>MVC</th>

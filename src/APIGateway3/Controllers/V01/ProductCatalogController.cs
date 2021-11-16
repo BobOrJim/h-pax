@@ -33,7 +33,7 @@ namespace APIGateway3.Controllers.V01
             //var API_DesertClient = _httpClientFactory.CreateClient().HttpClientPrep(uri.API_Desert, _tokenFactory.GetAccessToken().GetAwaiter().GetResult());
             //var SecretResponse = await API_DesertClient.GetAsync("api/V01/Deserts/SecretDesertInEurope");
             //return Ok(await SecretResponse.Content.ReadAsStringAsync());
-            
+            var a = 13;
             return Ok("Hej");
         }
     }

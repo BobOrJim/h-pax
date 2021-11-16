@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProductCatalog.Entities
+namespace ProductCatalog.Models
 {
-    public class Product
+    public class ProductDto
     {
         public Guid ProductId { get; set; }
         public string Name { get; set; }
