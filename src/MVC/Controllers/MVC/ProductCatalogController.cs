@@ -17,6 +17,7 @@ using MVC.Repos;
 using System.Web;
 using System.Security.Claims;
 using Common;
+using MVC.Models;
 
 namespace MVC.Controllers
 {
@@ -33,16 +34,26 @@ namespace MVC.Controllers
             _environment = environment;
         }
 
-
         [HttpGet("AskGateway3_GetAllProducts")]
         [Authorize]
         public async Task<IActionResult> AskGateway3_GetAllProducts()
         {
             var b = 10;
+
+            //SecretMessageViewModel secretMessageViewModel = new();
+            //secretMessageViewModel.httpResponseMessage = await CallURLWithAccessToken("https://localhost:44387/api/V01/ProductCatalog/GetAllProducts", await HttpContext.GetTokenAsync("access_token"));
+            //secretMessageViewModel.SecretMessage = await secretMessageViewModel.httpResponseMessage.Content.ReadAsStringAsync();
+            //SecretMessageViewModel secretMessageViewModel = new();
+
+            HttpResponseMessage httpResponseMessage = await CallURLWithAccessToken(uri.APIGateway3 + "api/V01/ProductCatalog/GetAllProducts", await HttpContext.GetTokenAsync("access_token"));
+            string dataAsString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+            List<Product> stuff = System.Text.Json.JsonSerializer.Deserialize<List<Product>>(dataAsString, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+
+
             SecretMessageViewModel secretMessageViewModel = new();
-            secretMessageViewModel.httpResponseMessage = await CallURLWithAccessToken("https://localhost:44387/api/V01/ProductCatalog/GetAllProducts", await HttpContext.GetTokenAsync("access_token"));
-            secretMessageViewModel.SecretMessage = await secretMessageViewModel.httpResponseMessage.Content.ReadAsStringAsync();
-            var c = 12;
+            secretMessageViewModel.SecretMessage = dataAsString;
+
             return View("SecretMessage", secretMessageViewModel);
         }
 
