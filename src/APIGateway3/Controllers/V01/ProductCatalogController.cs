@@ -30,13 +30,13 @@ namespace APIGateway3.Controllers.V01
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllProducts()
         {
-            //var API_DesertClient = _httpClientFactory.CreateClient().HttpClientPrep(uri.API_Desert, _tokenFactory.GetAccessToken().GetAwaiter().GetResult());
-            //var SecretResponse = await API_DesertClient.GetAsync("api/V01/Deserts/SecretDesertInEurope");
-            //return Ok(await SecretResponse.Content.ReadAsStringAsync());
+            
+            var ProductCatalog = _httpClientFactory.CreateClient().HttpClientPrep(uri.ProductCatalog, null);
+            var SecretResponse = await ProductCatalog.GetAsync("api/V01/Product/GetAllProducts");
             var a = 13;
-            return Ok("Hej");
+            return Ok(await SecretResponse.Content.ReadAsStringAsync());
+
+            //return Ok("Hej");
         }
     }
 }
-
-

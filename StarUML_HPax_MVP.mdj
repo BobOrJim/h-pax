@@ -3653,11 +3653,11 @@
 							},
 							"fillColor": "#91ffec",
 							"font": "Arial;13;0",
-							"left": 1000,
+							"left": 992,
 							"top": 674,
 							"width": 481,
 							"height": 25,
-							"text": "ProductCatalog_HttpGet_Product_GetAllProducts() : IEnumerable(ProductDto)"
+							"text": "ProductCatalog_HttpGet_Product_GetAllProducts() : IEnumerable(Product)"
 						},
 						{
 							"_type": "UMLTextBoxView",
@@ -3711,7 +3711,7 @@
 							"top": 696,
 							"width": 321,
 							"height": 100,
-							"text": "ProductDto\npublic Guid ProductId { get; set; }\npublic string Name { get; set; }\npublic int Price { get; set; }\npublic string ImageUrl { get; set; }\npublic string Description { get; set; }"
+							"text": "Product\npublic Guid ProductId { get; set; }\npublic string Name { get; set; }\npublic int Price { get; set; }\npublic string ImageUrl { get; set; }\npublic string Description { get; set; }"
 						},
 						{
 							"_type": "UMLTextBoxView",

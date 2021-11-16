@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProductCatalog.DbContexts;
+using ProductCatalog.Repository;
 
 namespace ProductCatalog
 {
@@ -31,7 +32,8 @@ namespace ProductCatalog
 
             services.AddDbContext<ProductCatalogDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ProductCatalogConnection")));
-
+            
+            services.AddScoped<IProductCatalogRepository, ProductCatalog.Repository.ProductCatalogRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

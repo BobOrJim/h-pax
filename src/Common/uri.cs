@@ -15,6 +15,6 @@ namespace Common
 
         public static string API_Mountain { get; } = "https://localhost:44381/";
 
-
+        public static string ProductCatalog { get; } = "https://localhost:44343/";
     }
 }
