@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.Entities;
 using ProductCatalog.Repository;
@@ -12,21 +13,20 @@ namespace ProductCatalog.Controllers.V01
     public class ProductController : ControllerBase
     {
         private readonly IProductCatalogRepository _IproductCatalogRepository;
+        private readonly IMapper _mapper;
 
-        public ProductController(IProductCatalogRepository productCatalogRepository)
+        public ProductController(IProductCatalogRepository productCatalogRepository, IMapper mapper)
         {
             _IproductCatalogRepository = productCatalogRepository;
+            _mapper = mapper;
         }
 
         [HttpGet("GetAllProducts")]
         //[AllowAnonymous]
         public ActionResult<List<Product>> GetAllProducts()
         {
-            var c = 11;
-            //Här vill jag skicka det som automapper dto
-
-
-            return Ok(_IproductCatalogRepository.ReadAllProducts());
+            List<Product> result = _IproductCatalogRepository.ReadAllProducts();
+            return Ok(_mapper.Map<List<Models.ProductDto>>(result));
         }
     }
 }

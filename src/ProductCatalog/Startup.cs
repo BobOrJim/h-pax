@@ -34,6 +34,7 @@ namespace ProductCatalog
                 options.UseSqlServer(Configuration.GetConnectionString("ProductCatalogConnection")));
             
             services.AddScoped<IProductCatalogRepository, ProductCatalog.Repository.ProductCatalogRepository>();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

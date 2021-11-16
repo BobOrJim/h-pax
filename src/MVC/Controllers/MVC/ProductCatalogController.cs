@@ -21,13 +21,13 @@ using Common;
 namespace MVC.Controllers
 {
     [Route("[controller]")]
-    public class WebShopController : Controller
+    public class ProductCatalogController : Controller
     {
 
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IHostEnvironment _environment;
 
-        public WebShopController(IHttpClientFactory httpClientFactory, IHostEnvironment environment)
+        public ProductCatalogController(IHttpClientFactory httpClientFactory, IHostEnvironment environment)
         {
             _httpClientFactory = httpClientFactory;
             _environment = environment;
