@@ -30,10 +30,10 @@ namespace IDP.Controllers.API.V01
         [HttpPost("AddRole")]
         public async Task<IActionResult> AddRole([FromBody] RolesDto rolesViewModel)
         {
-            string guid = Guid.NewGuid().ToString();
+            //string guid = Guid.NewGuid().ToString();
             ApplicationRole applicationRole = new ApplicationRole
             {
-                Id = guid,
+                Id = Guid.NewGuid(),
                 Name = rolesViewModel.NewRoleName.Normalize(),
                 NormalizedName = rolesViewModel.NewRoleName.Normalize(),
             };

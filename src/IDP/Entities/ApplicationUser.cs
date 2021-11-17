@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Identity;
 namespace IDP.Entities
 {
     // Extending IdentityUser
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<Guid>
     {
+        
         //Im free to add props here
     }
 }
