@@ -3044,7 +3044,7 @@
 							"top": 1344,
 							"width": 736,
 							"height": 25,
-							"text": "Basket_HttpPost_Basket_CreateNewBasketForUser(Guid UserId)"
+							"text": "Basket_HttpPost_Basket_CreateNewBasketForUser(Guid UserId) :BasketId"
 						},
 						{
 							"_type": "UMLTextBoxView",
