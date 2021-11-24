@@ -27,6 +27,9 @@ namespace IDP.Controllers.MVC
         public IActionResult Login(string returnUrl)
         {
             //Log.Information("Hello, from AuthController.cs in IDP");
+
+            
+
             return View("Login", new LoginViewModel { ReturnUrl = returnUrl ?? uri.IDP });
         }
 

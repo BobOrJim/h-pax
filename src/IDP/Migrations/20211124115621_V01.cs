@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IDP.Migrations
 {
-    public partial class v01 : Migration
+    public partial class V01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,13 +157,13 @@ namespace IDP.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("0110b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "607302ac-6283-4ace-a8e2-cb324a00111d", "User", "USER" },
-                    { new Guid("0210b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "9c5afc6c-4361-4348-a4e7-dabd4056fb7e", "Admin", "ADMIN" },
-                    { new Guid("0310b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "865f255e-0aef-4168-a7de-e6e86e75b563", "Root", "ROOT" },
-                    { new Guid("0410b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "91ba73c1-3c13-4aaf-9b15-f64abd2578c3", "Spare1", "SPARE1" },
-                    { new Guid("0510b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "0995f152-34ae-4c9f-b14b-1b603a48db26", "Spare2", "SPARE2" },
-                    { new Guid("0610b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "31b9dfb7-83bb-4092-9561-1cc956060523", "Masters_Degree_In_Forestry", "Masters_Degree_In_Forestry" },
-                    { new Guid("0710b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "1816db76-ddd2-4cb1-94ac-de769485e31a", "Masters_Degree_In_Forestry", "Masters_Degree_In_Mining" }
+                    { new Guid("0110b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "a65c39f2-fea0-44e2-8352-95b288027d94", "User", "USER" },
+                    { new Guid("0210b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "ef0a0978-7de1-459e-8002-bec95ca0e637", "Admin", "ADMIN" },
+                    { new Guid("0310b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "ed767924-6add-4529-b663-a79bb9fcc4e9", "Root", "ROOT" },
+                    { new Guid("0410b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "ace8160a-0eb2-4e27-81f9-bc6fb32628b4", "Spare1", "SPARE1" },
+                    { new Guid("0510b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "677cc527-436c-42d0-af16-08cb4b2f3d24", "Spare2", "SPARE2" },
+                    { new Guid("0610b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "e8ee73b8-dbe1-4811-815d-d938732255bd", "Masters_Degree_In_Forestry", "Masters_Degree_In_Forestry" },
+                    { new Guid("0710b1f9-8e0b-4a4f-a52e-dd20c3d4a539"), "771173f7-ed57-49b8-8b63-7e9a9b81ff84", "Masters_Degree_In_Forestry", "Masters_Degree_In_Mining" }
                 });
 
             migrationBuilder.InsertData(
@@ -171,16 +171,16 @@ namespace IDP.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("2798f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "2534cd7f-f63a-408f-8d9b-7d0784ae85bf", "FRIEND5@USER.com", true, false, null, "FRIEND5@USER.com", "FRIEND5@USER.com", "AQAAAAEAACcQAAAAEPsIDhvaU3ISUDKSCMvsTXf0vHzGvMCW+YC+HM2eZneQ9LFAEbCJw1Ba0RPr36USvQ==", null, false, null, false, "FRIEND5@USER.com" },
-                    { new Guid("2698f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "af4f48d4-37bf-424b-9432-1ed30be23d32", "FRIEND4@USER.com", true, false, null, "FRIEND4@USER.com", "FRIEND4@USER.com", "AQAAAAEAACcQAAAAEJlF0DwmN5Apm/y9RnQ57mgzZfgRUTdSdjybdTcyUEpDEBTNU+7PnthCCTeFhWpfgg==", null, false, null, false, "FRIEND4@USER.com" },
-                    { new Guid("2598f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "681a377a-b22a-42b4-b7ab-4e0b7f396c39", "FRIEND3@USER.com", true, false, null, "FRIEND3@USER.com", "FRIEND3@USER.com", "AQAAAAEAACcQAAAAEM8TX6FrmoIxdCZUy5e3Gqes53spsBNrgWU4m6RMZbGx67YUsvTN7UjnZMWt2+EqnA==", null, false, null, false, "FRIEND3@USER.com" },
-                    { new Guid("2498f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "9c1e0c39-34da-4d04-aabd-3350dc8ed070", "FRIEND2@USER.com", true, false, null, "FRIEND2@USER.com", "FRIEND2@USER.com", "AQAAAAEAACcQAAAAEG8i/Wy/fGiI3umVsajF4BZ6vnAesYtWrmjM42Kf7XO/M+7kKF3jjN6zT6SJmm7dFQ==", null, false, null, false, "FRIEND2@USER.com" },
-                    { new Guid("2113179f-7837-473a-a4d5-a5571b43e6a6"), 0, "9332437c-ff60-4dd7-b1c7-6ba94b828e9c", "ROOT@ROOT.com", true, false, null, "ROOT@ROOT.com", "ROOT@ROOT.com", "AQAAAAEAACcQAAAAEBuAxQP909NQfAIWCI8+EklwPhgqPRMiqPywTUyW8PzPZ8BRSXkazjTunnJOXLMlDA==", null, false, null, false, "ROOT@ROOT.com" },
-                    { new Guid("223f3002-7e53-441e-8b76-f6280be284aa"), 0, "54d8f34a-2ef3-44ff-b84c-3369aa3ad2e8", "USER@USER.com", true, false, null, "USER@USER.com", "USER@USER.com", "AQAAAAEAACcQAAAAECAoAom7liMz1GodY62fJFp/PEhCy2yprMjFHbaMRGOheDIR0Qdb9TptJCSyH5A2aQ==", null, false, null, false, "USER@USER.com" },
-                    { new Guid("2898f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "5ab19b5b-0726-4452-904e-a2861771f4f1", "FRIEND6@USER.com", true, false, null, "FRIEND6@USER.com", "FRIEND6@USER.com", "AQAAAAEAACcQAAAAEPf5e3VoeRV+HYZVFFBwDLPP8OPdQ/mPjQTk/TWfnEc/bekyaTRJarzS5ocVOLFaZQ==", null, false, null, false, "FRIEND6@USER.com" },
-                    { new Guid("20788d2f-8003-43c1-92a4-edc76a7c5dde"), 0, "a817e67f-ee13-4776-9a30-3c0cb00ac316", "ADMIN@ADMIN.com", true, false, null, "ADMIN@ADMIN.com", "ADMIN@ADMIN.com", "AQAAAAEAACcQAAAAEHboeogtYYQcixrU8aQ9Qai2jXOEThfvJESaeQTRnhpwAYWaMR1/rXAH/yRSdhteEg==", null, false, null, false, "ADMIN@ADMIN.com" },
-                    { new Guid("2398f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "c6c4d505-cc63-49ad-92e6-8fb1ee44966f", "FRIEND1@USER.com", true, false, null, "FRIEND1@USER.com", "FRIEND1@USER.com", "AQAAAAEAACcQAAAAEFqNc2wFYmYyJkSXwBzvNjvnsDiYvPh9PXoMlxFBKfZ1Ruzz0jeowZNJ4fFcI7qLEw==", null, false, null, false, "FRIEND1@USER.com" },
-                    { new Guid("2998f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "767de5f5-66c7-4a4e-82ac-3dd8c7f01edf", "FRIEND7@USER.com", true, false, null, "FRIEND7@USER.com", "FRIEND7@USER.com", "AQAAAAEAACcQAAAAEE+8qS9gKDqrlSRCQDiDWjnvsAdBpBa7k/YGb4B6R+P8bbxhZxcankoTRIVlq3s3Ng==", null, false, null, false, "FRIEND7@USER.com" }
+                    { new Guid("2798f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "1cb7f339-06c9-4658-9e45-7f0fce3ab2bc", "FRIEND5@USER.com", true, false, null, "FRIEND5@USER.com", "FRIEND5@USER.com", "AQAAAAEAACcQAAAAEFAOI+4Fq61VfEmc89mkktO0ulvBnPT7decZs6S5jADCpEepIwjX/NCYnrwwn2H+ww==", null, false, "5966f0ff-ada0-4daa-94af-07cdc125a7b6", false, "FRIEND5@USER.com" },
+                    { new Guid("2698f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "9e7c384d-f598-4d1e-84da-4b7acabf5e95", "FRIEND4@USER.com", true, false, null, "FRIEND4@USER.com", "FRIEND4@USER.com", "AQAAAAEAACcQAAAAEGUD1nfuXvgtL8RvAiHpr8Qb4CplBHOk/gi+NIx+pVDc869TAmyAmVL3dViQaq7Ksw==", null, false, "a268d7d3-bb09-4e06-ad81-a8b258ca2f1b", false, "FRIEND4@USER.com" },
+                    { new Guid("2598f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "6fb82e55-ee2f-4e8b-b9bb-29070993a913", "FRIEND3@USER.com", true, false, null, "FRIEND3@USER.com", "FRIEND3@USER.com", "AQAAAAEAACcQAAAAEAXWyXQ3gjTw+4ZLW3hju2qJ3dGyLPKhWJJ/OGFZZV9shUrJu946JW/1N1ldn7fOiQ==", null, false, "055d80af-60df-4f25-a2ef-cefefabd54b4", false, "FRIEND3@USER.com" },
+                    { new Guid("2498f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "a518b260-058b-490a-b62b-b6b62acde2b5", "FRIEND2@USER.com", true, false, null, "FRIEND2@USER.com", "FRIEND2@USER.com", "AQAAAAEAACcQAAAAEPpsj74KIv0Rvv4Ha7uLlARPlKf83PoRzSEWSliVW2BcqHIQZ6ShsN40lAhlXK5jDQ==", null, false, "ade158aa-cbdb-4382-ae97-f05abfee1fce", false, "FRIEND2@USER.com" },
+                    { new Guid("2113179f-7837-473a-a4d5-a5571b43e6a6"), 0, "6355465b-628a-4c0b-b5df-1485b29fbfd1", "ROOT@ROOT.com", true, false, null, "ROOT@ROOT.com", "ROOT@ROOT.com", "AQAAAAEAACcQAAAAEG12pDD6TOFEzs9ZP829QRzTqEAQph6J15NpkhtJk89zh6IqDLwcVCskDjht24+rRw==", null, false, "ba4a67d4-142f-4009-abdf-60a80e601bc1", false, "ROOT@ROOT.com" },
+                    { new Guid("223f3002-7e53-441e-8b76-f6280be284aa"), 0, "6f79d491-0173-4099-9bdf-3b1626998a03", "USER@USER.com", true, false, null, "USER@USER.com", "USER@USER.com", "AQAAAAEAACcQAAAAEItEAlTjfaC9DXV6USP4uX/C7qjjDZbnCyoYRpu+XhMfKhct6jT5x+Cg3msLw53TKg==", null, false, "39483c47-0ad3-4b90-82d8-c8a63e418410", false, "USER@USER.com" },
+                    { new Guid("2898f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "171ee182-f470-4e8f-99fc-b2e6690eb201", "FRIEND6@USER.com", true, false, null, "FRIEND6@USER.com", "FRIEND6@USER.com", "AQAAAAEAACcQAAAAEEEaJslF0J7JkiaTeZL509GqJ47KRk8jTiyXLXdEwE0mUgg+CF4QyL9GrYTVbsTm7w==", null, false, "b4148cb9-2a78-41d6-8569-593e477ac520", false, "FRIEND6@USER.com" },
+                    { new Guid("20788d2f-8003-43c1-92a4-edc76a7c5dde"), 0, "8d9e9daa-946c-4d17-a115-997b3b8b89ea", "ADMIN@ADMIN.com", true, false, null, "ADMIN@ADMIN.com", "ADMIN@ADMIN.com", "AQAAAAEAACcQAAAAEEMN8ieJRgbLJ303e+jnjsKxkKw5z7x5xLnJQgciWGZernXyMsZeuwJrCBDQ1XSHNQ==", null, false, "471ee140-1f96-4869-8449-0bb25425ba6b", false, "ADMIN@ADMIN.com" },
+                    { new Guid("2398f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "d6576aa7-01b8-4bb8-8317-8b9bf1bec1c3", "FRIEND1@USER.com", true, false, null, "FRIEND1@USER.com", "FRIEND1@USER.com", "AQAAAAEAACcQAAAAEFkUZBt87fuRxrinkBQnuxQZ9F4UNdrFjyuoXsEVQitQj15uZ2btdwSfmyDNU39l6Q==", null, false, "2951f404-84b3-41ab-8e4e-ba854636ca56", false, "FRIEND1@USER.com" },
+                    { new Guid("2998f549-e790-4e9f-aa16-18c2292a2ee9"), 0, "4ce941b1-1312-4596-9544-01474fbe57e6", "FRIEND7@USER.com", true, false, null, "FRIEND7@USER.com", "FRIEND7@USER.com", "AQAAAAEAACcQAAAAEF5pRTLQtbrtP5KTsJdO3gzzmOfOP+UalfbMxzBl4nFS/zAxJxW43LQRvZWoRPoT/w==", null, false, "01b30284-7fa3-4946-96ce-2f6139c0cbc1", false, "FRIEND7@USER.com" }
                 });
 
             migrationBuilder.InsertData(

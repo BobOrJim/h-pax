@@ -30,16 +30,11 @@ namespace IDP.Controllers.API.V01
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterViewModel vm) //All new Users, get the Userrole by default.
         {
-            var user = new ApplicationUser { UserName = vm.Username, NormalizedEmail = vm.Username, EmailConfirmed = true };
+            var user = new ApplicationUser { UserName = vm.Username, NormalizedEmail = vm.Username, EmailConfirmed = true, SecurityStamp = Guid.NewGuid().ToString() };
             var result = await _userManager.CreateAsync(user, vm.Password);
             await _userManager.AddToRoleAsync(user, "User"); //New users get "User" role by default
             return Ok();
         }
-
-
-
-
-
 
     }
 }

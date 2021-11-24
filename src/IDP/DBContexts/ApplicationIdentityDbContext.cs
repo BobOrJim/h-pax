@@ -49,11 +49,11 @@ namespace IDP.DBContexts
                 var UserGuid_ROOT = Guid.Parse("{2113179F-7837-473A-A4D5-A5571B43E6A6}");
                 var UserGuid_USER = Guid.Parse("{223F3002-7E53-441E-8B76-F6280BE284AA}");
                 string tmp = "ADMIN@ADMIN.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_ADMIN, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "admin") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_ADMIN, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "admin"), SecurityStamp = Guid.NewGuid().ToString() });
                 tmp = "ROOT@ROOT.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_ROOT, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "root") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_ROOT, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "root"), SecurityStamp = Guid.NewGuid().ToString() });
                 tmp = "USER@USER.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_USER, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_USER, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user"), SecurityStamp = Guid.NewGuid().ToString() });
 
                 //Seedings some more AspNetUsers
                 var UserGuid_FRIEND1 = Guid.Parse("{2398F549-E790-4E9F-AA16-18C2292A2EE9}");
@@ -64,19 +64,19 @@ namespace IDP.DBContexts
                 var UserGuid_FRIEND6 = Guid.Parse("{2898F549-E790-4E9F-AA16-18C2292A2EE9}");
                 var UserGuid_FRIEND7 = Guid.Parse("{2998F549-E790-4E9F-AA16-18C2292A2EE9}");
                 tmp = "FRIEND1@USER.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND1, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND1, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user"), SecurityStamp = Guid.NewGuid().ToString() });
                 tmp = "FRIEND2@USER.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND2, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND2, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user"), SecurityStamp = Guid.NewGuid().ToString() });
                 tmp = "FRIEND3@USER.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND3, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND3, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user"), SecurityStamp = Guid.NewGuid().ToString() });
                 tmp = "FRIEND4@USER.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND4, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND4, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user"), SecurityStamp = Guid.NewGuid().ToString() });
                 tmp = "FRIEND5@USER.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND5, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND5, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user"), SecurityStamp = Guid.NewGuid().ToString() });
                 tmp = "FRIEND6@USER.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND6, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND6, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user"), SecurityStamp = Guid.NewGuid().ToString() });
                 tmp = "FRIEND7@USER.com";
-                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND7, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user") });
+                modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = UserGuid_FRIEND7, UserName = tmp, NormalizedUserName = tmp, Email = tmp, NormalizedEmail = tmp, EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "user"), SecurityStamp = Guid.NewGuid().ToString() });
 
                 //Seeding the relation between user and role to AspNetUserRoles
                 modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid> { RoleId = RoleGuid_ADMIN, UserId = UserGuid_ADMIN }); //Give admin admin role
