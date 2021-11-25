@@ -1,0 +1,100 @@
+﻿@model MVC.ViewModels.ProductCatalogViewModel
+
+<a href="https://localhost:44345/dev/DevPage" class="link-warning">/Dev/DevPage</a>
+<br>
+<a href="https://localhost:44345/Dev/Token" class="link-warning">/Dev/Token</a>
+
+@{ ViewData["Title"] = "";}
+
+<br>
+<br>
+<p>RawDataFromHttpResponse:</p>
+@Model.RawDataFromHttpResponse
+<br>
+<br>
+<p>httpResponseMessage message:</p>
+@Model.httpResponseMessage
+<br>
+<br>
+
+<br />
+<br />
+<form id="add" asp-controller="ProductCatalog" asp-action="AddProductToBasket" method="post"> </form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ProductId</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">ImageUrl</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Products.Count; i++)
+        {
+        <tr>
+            @*<th scope="row">@i</th>*@
+            <td>@Model.Products[i].ProductId</td>
+            <td>@Model.Products[i].Name</td>
+            <td>@Model.Products[i].Price</td>
+            <td>@Model.Products[i].ImageUrl</td>
+            <td>@Model.Products[i].Description</td>
+            <td align="center">
+                <span class="table-remove">
+                    <button type="submit" name="Id" value="@Model.Products[i].ProductId" form="add"
+                            class="form-control btn btn-danger mb-2" style="width:110px">
+                        Remove
+                    </button>
+                </span>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*Extra troubleshooting stuff, in case we are unlucky :)
+    httpResponseMessage = @Model.httpResponseMessage
+
+
+    <br>
+    <br>
+    httpResponseMessage = @Model.httpResponseMessage
+    <br>
+    <br>
+    httpResponseMessage.Content = @Model.httpResponseMessage.Content
+    <br>
+    <br>
+    httpResponseMessage.Headers = @Model.httpResponseMessage.Headers
+    <br>
+    <br>
+    httpResponseMessage.IsSuccessStatusCode = @Model.httpResponseMessage.IsSuccessStatusCode
+    <br>
+    <br>
+    httpResponseMessage.ReasonPhrase = @Model.httpResponseMessage.ReasonPhrase
+    <br>
+    <br>
+    httpResponseMessage.RequestMessage = @Model.httpResponseMessage.RequestMessage
+    <br>
+    <br>
+    httpResponseMessage.StatusCode = @Model.httpResponseMessage.StatusCode
+    <br>
+    <br>
+    httpResponseMessage.TrailingHeaders = @Model.httpResponseMessage.TrailingHeaders
+    <br>
+    <br>
+    httpResponseMessage.Version = @Model.httpResponseMessage.Version*@
+

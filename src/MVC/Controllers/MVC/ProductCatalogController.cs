@@ -34,29 +34,65 @@ namespace MVC.Controllers
             _environment = environment;
         }
 
+
         [HttpGet("AskGateway3_GetAllProducts")]
         [Authorize]
         public async Task<IActionResult> AskGateway3_GetAllProducts()
         {
-            var b = 10;
-
-            //SecretMessageViewModel secretMessageViewModel = new();
-            //secretMessageViewModel.httpResponseMessage = await CallURLWithAccessToken("https://localhost:44387/api/V01/ProductCatalog/GetAllProducts", await HttpContext.GetTokenAsync("access_token"));
-            //secretMessageViewModel.SecretMessage = await secretMessageViewModel.httpResponseMessage.Content.ReadAsStringAsync();
-            //SecretMessageViewModel secretMessageViewModel = new();
+            ProductCatalogViewModel productCatalogViewModel = new();
 
             HttpResponseMessage httpResponseMessage = await CallURLWithAccessToken(uri.APIGateway3 + "api/V01/ProductCatalog/GetAllProducts", await HttpContext.GetTokenAsync("access_token"));
             string dataAsString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+            productCatalogViewModel.RawDataFromHttpResponse = dataAsString;
             List<Product> stuff = System.Text.Json.JsonSerializer.Deserialize<List<Product>>(dataAsString, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-
-
-            SecretMessageViewModel secretMessageViewModel = new();
-            secretMessageViewModel.SecretMessage = dataAsString;
-
-            return View("SecretMessage", secretMessageViewModel);
+            productCatalogViewModel.Products = stuff;
+            
+            return View("ProductCatalog", productCatalogViewModel);
         }
 
+
+
+        //1: User skall skickas till IDP (Klart, görs automatiskt med authorize)
+        //2: User tilldelas en guid cookie av idp (klart)
+        //3: guid läses från cookie
+
+        //Kolla om det finns en basket i session storage
+        //Om det inte finns en basket så skapar vi en.
+        //4: guid skickas i anrop till basket microservice, som returnerar en basket.
+        //5: Ett item lägs i basket
+        //6: Basket sparas i session storage med guid som key.basket sparas även i viewmodel.
+
+        [HttpPost("AddProductToBasket")]
+        [Authorize]
+        public async Task<IActionResult> AddProductToBasket(ProductCatalogViewModel productCatalogViewModel, Guid Id)
+        {
+
+            string UserGuidAndSessionKey = ReadCookie("h-pax.cookie");
+
+            //Load Session
+            StorageViewModel newStorageViewModel = LoadSessionStorage(storageViewModel);
+            //Append text
+            newStorageViewModel.StringStorage += TextToAdd;
+            //Save Session
+            if (HttpContext.Request.Cookies.ContainsKey("user.cookie"))
+            {
+                HttpContext.Session.SetString(ReadCookie("user.cookie"), JsonSerializer.Serialize(newStorageViewModel));
+            }
+
+            var a = 12;
+
+
+
+            await Task.CompletedTask;
+
+            return View("ProductCatalog", productCatalogViewModel);
+        }
+
+
+        public string ReadCookie(string key)
+        {
+            return Request.Cookies[key];
+        }
 
 
         public async Task<HttpResponseMessage> CallURLWithAccessToken(string url, string accessToken)
