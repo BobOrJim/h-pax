@@ -10,14 +10,16 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json;
 using Microsoft.Extensions.Hosting;
 using MVC.Repos;
 using System.Web;
 using System.Security.Claims;
 using Common;
 using MVC.Models;
+using Microsoft.AspNetCore.Http;
+using System.Text.Json;
 
 namespace MVC.Controllers
 {
@@ -27,6 +29,7 @@ namespace MVC.Controllers
 
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IHostEnvironment _environment;
+        private readonly string IDPCreatedCookieName = "h-pax.cookie";
 
         public ProductCatalogController(IHttpClientFactory httpClientFactory, IHostEnvironment environment)
         {
@@ -67,17 +70,19 @@ namespace MVC.Controllers
         public async Task<IActionResult> AddProductToBasket(ProductCatalogViewModel productCatalogViewModel, Guid Id)
         {
 
-            string UserGuidAndSessionKey = ReadCookie("h-pax.cookie");
+            string UserGuidAndSessionKey = ReadCookie(IDPCreatedCookieName);
 
             //Load Session
-            StorageViewModel newStorageViewModel = LoadSessionStorage(storageViewModel);
+            ProductCatalogViewModel newProductCatalogViewModel = LoadSessionStorage();
+
+            
             //Append text
-            newStorageViewModel.StringStorage += TextToAdd;
+            //var stuff = test.basket.BasketLines.Add(new BasketLine());
             //Save Session
-            if (HttpContext.Request.Cookies.ContainsKey("user.cookie"))
-            {
-                HttpContext.Session.SetString(ReadCookie("user.cookie"), JsonSerializer.Serialize(newStorageViewModel));
-            }
+            //if (HttpContext.Request.Cookies.ContainsKey(IDPCreatedCookieName))
+            //{
+            //    HttpContext.Session.SetString(ReadCookie(IDPCreatedCookieName), JsonSerializer.Serialize(newStorageViewModel));
+            //}
 
             var a = 12;
 
@@ -86,6 +91,22 @@ namespace MVC.Controllers
             await Task.CompletedTask;
 
             return View("ProductCatalog", productCatalogViewModel);
+        }
+
+        public ProductCatalogViewModel LoadSessionStorage()
+        {
+            ProductCatalogViewModel productCatalogViewModel = new();
+            //Load SessionStorage using Id in cookie.
+            if (HttpContext.Request.Cookies.ContainsKey(IDPCreatedCookieName))
+            {
+                string sessionKey = ReadCookie(IDPCreatedCookieName);
+                string sessionString = HttpContext.Session.GetString(sessionKey);
+                if (!String.IsNullOrEmpty(sessionString))
+                {
+                    productCatalogViewModel = JsonSerializer.Deserialize<ProductCatalogViewModel>(sessionString);
+                }
+            }
+            return productCatalogViewModel;
         }
 
 
@@ -164,8 +185,8 @@ namespace MVC.Controllers
                     tokenViewModel.AccessTokenLifeLeftPercent = InMemoryTokenRepo.AccessTokenLifeLeftPercent * 100.0;
                     if (!string.IsNullOrEmpty(InMemoryTokenRepo.AccessToken))
                     {
-                        tokenViewModel.AccessTokenHeader = JValue.Parse(jwtAccessToken.Header.SerializeToJson()).ToString(Formatting.Indented);
-                        tokenViewModel.AccessTokenPayload = JValue.Parse(jwtAccessToken.Payload.SerializeToJson()).ToString(Formatting.Indented);
+                        tokenViewModel.AccessTokenHeader = Newtonsoft.Json.Linq.JValue.Parse(jwtAccessToken.Header.SerializeToJson()).ToString(Newtonsoft.Json.Formatting.Indented);
+                        tokenViewModel.AccessTokenPayload = Newtonsoft.Json.Linq.JValue.Parse(jwtAccessToken.Payload.SerializeToJson()).ToString(Newtonsoft.Json.Formatting.Indented);
                         tokenViewModel.AccessToken_nbf = jwtAccessToken.ValidFrom.ToString("yyyy-MM-dd HH:mm:ss");
                         tokenViewModel.AccessToken_exp = jwtAccessToken.ValidTo.ToString("yyyy-MM-dd HH:mm:ss");
                         tokenViewModel.AccessToken_auth_time = jwtAccessToken.IssuedAt.ToString("yyyy-MM-dd HH:mm:ss");
@@ -184,8 +205,8 @@ namespace MVC.Controllers
                     tokenViewModel.IdTokenLifeLeftPercent = InMemoryTokenRepo.IdTokenLifeLeftPercent * 100.0;
                     if (!string.IsNullOrEmpty(InMemoryTokenRepo.IdToken))
                     {
-                        tokenViewModel.IdTokenHeader = JValue.Parse(jwtIdToken.Header.SerializeToJson()).ToString(Formatting.Indented);
-                        tokenViewModel.IdTokenPayload = JValue.Parse(jwtIdToken.Payload.SerializeToJson()).ToString(Formatting.Indented);
+                        tokenViewModel.IdTokenHeader = Newtonsoft.Json.Linq.JValue.Parse(jwtIdToken.Header.SerializeToJson()).ToString(Newtonsoft.Json.Formatting.Indented);
+                        tokenViewModel.IdTokenPayload = Newtonsoft.Json.Linq.JValue.Parse(jwtIdToken.Payload.SerializeToJson()).ToString(Newtonsoft.Json.Formatting.Indented);
                         tokenViewModel.IdToken_nbf = jwtIdToken.ValidFrom.ToString("yyyy-MM-dd HH:mm:ss");
                         tokenViewModel.IdToken_exp = jwtIdToken.ValidTo.ToString("yyyy-MM-dd HH:mm:ss");
                         tokenViewModel.IdToken_auth_time = jwtIdToken.IssuedAt.ToString("yyyy-MM-dd HH:mm:ss");

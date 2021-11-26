@@ -13,7 +13,11 @@ namespace MVC.ViewModels
 
         public string RawDataFromHttpResponse { get; set; }
 
-
         public List<Product> Products { get; set; }
+
+
+        //Inherit?
+        public Basket basket { get; set; } = new();
+
     }
 }

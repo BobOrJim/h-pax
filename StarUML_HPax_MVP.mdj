@@ -3698,7 +3698,7 @@
 							"top": 840,
 							"width": 736,
 							"height": 85,
-							"text": "BasketDto:\npublic Guid BasketId { get; set; }\npublic Guid UserId { get; set; }\npublic Collection<BasketLine> BasketLines { get; set; }\npublic Guid? CouponId { get; set; }"
+							"text": "Basket:\npublic Guid BasketId { get; set; }\npublic Guid UserId { get; set; }\npublic Collection<BasketLine> BasketLines { get; set; }\npublic Guid? CouponId { get; set; }"
 						},
 						{
 							"_type": "UMLTextBoxView",
@@ -3724,7 +3724,7 @@
 							"top": 960,
 							"width": 736,
 							"height": 100,
-							"text": "BasketLineDto:\npublic Guid BasketLineId { get; set; }\npublic Guid BasketId { get; set; }\npublic Guid ProductId { get; set; }\npublic int Price { get; set; }\npublic int Amount { get; set; }"
+							"text": "BasketLine:\npublic Guid BasketLineId { get; set; }\npublic Guid BasketId { get; set; }\npublic Guid ProductId { get; set; }\npublic int Price { get; set; }\npublic int Amount { get; set; }"
 						}
 					]
 				},
