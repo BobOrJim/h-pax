@@ -76,9 +76,9 @@ namespace MVC.Controllers
         //2: User tilldelas en guid cookie av idp (klart)
         //3: guid läses från cookie (Klart)
         //4: Bygga basket.cs o basketlines i MVC (Klart)
-
-
         //5: Kolla om det finns en basket i session storage där jag använder user guid som nyckel.
+
+
         //6: Om det inte finns en basket så anropas Basket-microservice där en basket tas emot, anrop sker via BFF3. (user guid skickas)
         //7: Ett item lägs i basket
         //8: Basket sparas i session storage med guid som key OCH basket sparas också i viewmodel.
