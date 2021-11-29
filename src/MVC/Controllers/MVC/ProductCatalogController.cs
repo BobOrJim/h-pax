@@ -78,7 +78,7 @@ namespace MVC.Controllers
         //4: Bygga basket.cs o basketlines i MVC (Klart)
         //5: Kolla om det finns en basket i session storage där jag använder user guid som nyckel.
 
-
+        //5.5 Build and seed the Basket db.
         //6: Om det inte finns en basket så anropas Basket-microservice där en basket tas emot, anrop sker via BFF3. (user guid skickas)
         //7: Ett item lägs i basket
         //8: Basket sparas i session storage med guid som key OCH basket sparas också i viewmodel.

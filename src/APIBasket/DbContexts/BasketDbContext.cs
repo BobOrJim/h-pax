@@ -11,7 +11,8 @@ namespace APIBasket.DbContexts
     {
         public BasketDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Basket> Products { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketLine> BasketLines { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,7 +21,6 @@ namespace APIBasket.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Basket>().HasKey(b => new { b.BasketId });
             modelBuilder.Entity<Basket>().Property(b => b.BasketId).IsRequired();
             modelBuilder.Entity<BasketLine>().HasKey(bl => new { bl.BasketLineId });
@@ -32,39 +32,50 @@ namespace APIBasket.DbContexts
                 .HasForeignKey(t => t.BasketId); //FK in BasketLines
 
 
-            //modelBuilder.Entity<Course>()
-            //    .HasMany(a => a.MyAssignments)
-            //    .WithOne(a => a.MyCourse)
-            //    .HasForeignKey(t => t.MyCourseIdFK); //Notring. om det är en-till-many, så måste FK ligga i "many" duh
+            //Seeding:
+            //Baskets sent to Order microservice
 
+            //user ADMIN basket 1
+            Guid UserGuid_ADMIN = Guid.Parse("{20788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+            Guid Basket1Guid_ADMIN = Guid.Parse("{B650B275-5CE8-4FCC-AFC4-56005109E2E5}");
+            Guid BasketLine1Guid_ADMIN = Guid.Parse("{A94D70C5-1217-463B-B318-93679084BADA}");
+            Guid ReservoirDogsGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+            Guid BasketLine2Guid_ADMIN = Guid.Parse("{B94D70C5-1217-463B-B318-93679084BADA}");
+            Guid TrueRomanceGuid = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}");
+            Guid BasketLine3Guid_ADMIN = Guid.Parse("{C94D70C5-1217-463B-B318-93679084BADA}");
+            Guid PulpFictionGuid = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
+            modelBuilder.Entity<Basket>().HasData(new Basket { BasketId = Basket1Guid_ADMIN, UserId = UserGuid_ADMIN, BasketLines = new List<BasketLine>(), CouponId = null });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine1Guid_ADMIN, BasketId = Basket1Guid_ADMIN, ProductId = ReservoirDogsGuid, Price = 21, Amount = 1 });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine2Guid_ADMIN, BasketId = Basket1Guid_ADMIN, ProductId = TrueRomanceGuid, Price = 22, Amount = 2 });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine3Guid_ADMIN, BasketId = Basket1Guid_ADMIN, ProductId = PulpFictionGuid, Price = 23, Amount = 1 });
 
+            //user ADMIN basket 2
+            Guid ADMINGuid_Basket2 = Guid.Parse("{C650B275-5CE8-4FCC-AFC4-56005109E2E5}");
+            Guid Basket2Guid_ADMIN = Guid.Parse("{8B19D011-3710-4B87-9B5F-2A1E6EE1404B}");
+            Guid NaturalBornKillersGuid = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
+            Guid BasketLine4Guid_ADMIN = Guid.Parse("{972B1DE4-FD41-4D6D-8D7A-CF80219E60D7}");
+            Guid FromDuskTillDawnGuid = Guid.Parse("{1098F549-E790-4E9F-AA16-18C2292A2EE9}");
+            Guid BasketLine5Guid_ADMIN = Guid.Parse("{A72B1DE4-FD41-4D6D-8D7A-CF80219E60D7}");
+            Guid JackieBrownGuid = Guid.Parse("{1198F549-E790-4E9F-AA16-18C2292A2EE9}");
+            Guid BasketLine6Guid_ADMIN = Guid.Parse("{B72B1DE4-FD41-4D6D-8D7A-CF80219E60D7}");
+            modelBuilder.Entity<Basket>().HasData(new Basket { BasketId = Basket2Guid_ADMIN, UserId = UserGuid_ADMIN, BasketLines = new List<BasketLine>(), CouponId = null });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine4Guid_ADMIN, BasketId = Basket2Guid_ADMIN, ProductId = NaturalBornKillersGuid, Price = 24, Amount = 3 });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine5Guid_ADMIN, BasketId = Basket2Guid_ADMIN, ProductId = FromDuskTillDawnGuid, Price = 25, Amount = 1 });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine6Guid_ADMIN, BasketId = Basket2Guid_ADMIN, ProductId = JackieBrownGuid, Price = 26, Amount = 1 });
 
-            ////Seeding
-            //var ReservoirDogsGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
-            //var TrueRomanceGuid = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}");
-            //var PulpFictionGuid = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
-            //var NaturalBornKillersGuid = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
-            //var FromDuskTillDawnGuid = Guid.Parse("{1098F549-E790-4E9F-AA16-18C2292A2EE9}");
-
-            //var JackieBrownGuid = Guid.Parse("{1198F549-E790-4E9F-AA16-18C2292A2EE9}");
-            //var InglouriousBasterdsGuid = Guid.Parse("{1298F549-E790-4E9F-AA16-18C2292A2EE9}");
-            //var DjangoUnchainedGuid = Guid.Parse("{1398F549-E790-4E9F-AA16-18C2292A2EE9}");
-            //var TheHatefulEightGuid = Guid.Parse("{1498F549-E790-4E9F-AA16-18C2292A2EE9}");
-            //var OnceUponaTimeInHollywoodGuid = Guid.Parse("{1598F549-E790-4E9F-AA16-18C2292A2EE9}");
-
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = ReservoirDogsGuid, Name = "Reservoir Dogs", Price = 21, ImageUrl = "SomeURL", Description = "Movie 1" });
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = TrueRomanceGuid, Name = "True Romance", Price = 22, ImageUrl = "SomeURL", Description = "Movie 2" });
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = PulpFictionGuid, Name = "Pulp Fiction", Price = 23, ImageUrl = "SomeURL", Description = "Movie 3" });
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = NaturalBornKillersGuid, Name = "Natural BornKillers", Price = 24, ImageUrl = "SomeURL", Description = "Movie 4" });
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = FromDuskTillDawnGuid, Name = "From Dusk Till Dawn", Price = 25, ImageUrl = "SomeURL", Description = "Movie 5" });
-
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = JackieBrownGuid, Name = "Jackie Brown", Price = 26, ImageUrl = "SomeURL", Description = "Movie 6" });
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = InglouriousBasterdsGuid, Name = "Inglourious Basterds", Price = 27, ImageUrl = "SomeURL", Description = "Movie 7" });
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = DjangoUnchainedGuid, Name = "Django Unchained", Price = 28, ImageUrl = "SomeURL", Description = "Movie 8" });
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = TheHatefulEightGuid, Name = "The Hateful Eight", Price = 29, ImageUrl = "SomeURL", Description = "Movie 9" });
-            //modelBuilder.Entity<Product>().HasData(new Product { ProductId = OnceUponaTimeInHollywoodGuid, Name = "Once Upon a Time In Hollywood", Price = 30, ImageUrl = "SomeURL", Description = "Movie 10" });
-
-
+            //user FRIEND1 basket 1
+            Guid UserGuid_FRIEND1 = Guid.Parse("{2398F549-E790-4E9F-AA16-18C2292A2EE9}");
+            Guid Basket1Guid_FRIEND1 = Guid.Parse("{D650B275-5CE8-4FCC-AFC4-56005109E2E5}");
+            Guid InglouriousBasterdsGuid = Guid.Parse("{1298F549-E790-4E9F-AA16-18C2292A2EE9}");
+            Guid BasketLine7Guid_ADMIN = Guid.Parse("{C72B1DE4-FD41-4D6D-8D7A-CF80219E60D7}");
+            Guid DjangoUnchainedGuid = Guid.Parse("{1398F549-E790-4E9F-AA16-18C2292A2EE9}");
+            Guid BasketLine8Guid_ADMIN = Guid.Parse("{D72B1DE4-FD41-4D6D-8D7A-CF80219E60D7}");
+            Guid TheHatefulEightGuid = Guid.Parse("{1498F549-E790-4E9F-AA16-18C2292A2EE9}");
+            Guid BasketLine9Guid_ADMIN = Guid.Parse("{E72B1DE4-FD41-4D6D-8D7A-CF80219E60D7}");
+            modelBuilder.Entity<Basket>().HasData(new Basket { BasketId = Basket1Guid_FRIEND1, UserId = UserGuid_FRIEND1, BasketLines = new List<BasketLine>(), CouponId = null });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine7Guid_ADMIN, BasketId = Basket1Guid_FRIEND1, ProductId = InglouriousBasterdsGuid, Price = 27, Amount = 1 });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine8Guid_ADMIN, BasketId = Basket1Guid_FRIEND1, ProductId = DjangoUnchainedGuid, Price = 28, Amount = 1 });
+            modelBuilder.Entity<BasketLine>().HasData(new BasketLine { BasketLineId = BasketLine9Guid_ADMIN, BasketId = Basket1Guid_FRIEND1, ProductId = TheHatefulEightGuid, Price = 29, Amount = 1 });
 
         }
     }

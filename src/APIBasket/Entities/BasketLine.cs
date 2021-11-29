@@ -13,6 +13,6 @@ namespace APIBasket.Entities
         public Guid ProductId { get; set; }
         public int Price { get; set; }
         public int Amount { get; set; }
-        public Basket Basket { get; set; } //For Fluent/EF
+        public Basket Basket { get; set; } //FK for Fluent/EF
     }
 }
