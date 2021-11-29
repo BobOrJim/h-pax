@@ -30,13 +30,22 @@ namespace APIGateway3.Controllers.V01
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllProducts()
         {
-            
-            var ProductCatalog = _httpClientFactory.CreateClient().HttpClientPrep(uri.ProductCatalog, null);
-            var SecretResponse = await ProductCatalog.GetAsync("api/V01/Product/GetAllProducts");
-            var a = 13;
+            var ProductCatalogClient = _httpClientFactory.CreateClient().HttpClientPrep(uri.ProductCatalog, null);
+            var SecretResponse = await ProductCatalogClient.GetAsync("api/V01/Product/GetAllProducts");
             return Ok(await SecretResponse.Content.ReadAsStringAsync());
-
-            //return Ok("Hej");
         }
+
+        [HttpGet("GetBasket")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetBasket()
+        {
+            var BasketClient = _httpClientFactory.CreateClient().HttpClientPrep(uri.ProductCatalog, null);
+            var SecretResponse = await BasketClient.GetAsync("api/V01/Product/GetAllProducts");
+            return Ok(await SecretResponse.Content.ReadAsStringAsync());
+        }
+
+
+
+        //api/V01/ProductCatalog/GetBasket
     }
 }

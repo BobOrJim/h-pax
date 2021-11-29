@@ -53,6 +53,22 @@ namespace MVC.Controllers
             return View("ProductCatalog", productCatalogViewModel);
         }
 
+        public async Task<Basket> AskGateway3_GetBasket(Guid guid)
+        {
+            //ProductCatalogViewModel productCatalogViewModel = new();
+
+            HttpResponseMessage httpResponseMessage = await CallURLWithAccessToken(uri.APIGateway3 + "api/V01/ProductCatalog/GetBasket", await HttpContext.GetTokenAsync("access_token"));
+            string dataAsString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+            
+            
+            var stuff = System.Text.Json.JsonSerializer.Deserialize<Basket>(dataAsString, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            var asdfasdf = 12;
+
+            return new Basket();
+        }
+
+
 
 
         //NÄR USER KLICKAR PÅ ATT PRODUCT
@@ -63,11 +79,12 @@ namespace MVC.Controllers
 
 
         //5: Kolla om det finns en basket i session storage där jag använder user guid som nyckel.
-            //6: Om det inte finns en basket så anropas Basket-microservice där en basket tas emot, anrop sker via BFF3. (user guid skickas)
+        //6: Om det inte finns en basket så anropas Basket-microservice där en basket tas emot, anrop sker via BFF3. (user guid skickas)
         //7: Ett item lägs i basket
         //8: Basket sparas i session storage med guid som key OCH basket sparas också i viewmodel.
         //9. Om item finns skall antal ökas, annas skapas ny basketLines.
         //9: Uppdatera StarUML.
+        //10: MVC vet inte struktur bakom gateway3, således skall controller byta namn till något anonymt, kanske shoppingController. Likaså skall namn i Gateway3 ändras till shoppingController.
 
         //20. Checkout knapp till checkout meny
         //30. Apply coupon i checkout meny (verifiera mot checkout service)
@@ -76,7 +93,7 @@ namespace MVC.Controllers
 
         [HttpPost("AddProductToBasket")]
         [Authorize]
-        public async Task<IActionResult> AddProductToBasket(ProductCatalogViewModel productCatalogViewModel, Guid Id)
+        public async Task<IActionResult> AddProductToBasket(ProductCatalogViewModel productCatalogViewModel, Guid ProductId)
         {
             var b = 12;
 
@@ -89,8 +106,8 @@ namespace MVC.Controllers
             if (newProductCatalogViewModel.basket == null)
             {
                 var asdfa = 12;
-                //newProductCatalogViewModel = //anrop här till Basket service
-
+                newProductCatalogViewModel.basket = AskGateway3_GetBasket(Guid.Parse(UserGuidAndSessionKey)).GetAwaiter().GetResult();
+                var banan = 12;
             }
 
             //Append text
@@ -104,8 +121,6 @@ namespace MVC.Controllers
 
 
             var a = 12;
-
-
 
             await Task.CompletedTask;
 
@@ -128,8 +143,6 @@ namespace MVC.Controllers
             }
             return null;
         }
-
-
         public string ReadCookie(string key)
         {
             return Request.Cookies[key];

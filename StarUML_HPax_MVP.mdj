@@ -3027,24 +3027,10 @@
 							"fillColor": "#91ffec",
 							"font": "Arial;13;0",
 							"left": 1272,
-							"top": 1368,
-							"width": 736,
-							"height": 25,
-							"text": "Basket_HttpGet_Basket_GetBasket(Guid basketId) : Basket"
-						},
-						{
-							"_type": "UMLTextBoxView",
-							"_id": "AAAAAAF80wGmcOJfQ70=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"fillColor": "#91ffec",
-							"font": "Arial;13;0",
-							"left": 1272,
 							"top": 1344,
 							"width": 736,
 							"height": 25,
-							"text": "Basket_HttpPost_Basket_CreateNewBasketForUser(Guid UserId) :BasketId"
+							"text": "Basket_HttpPost_Basket_GetBasket(Guid basketId) : Basket"
 						},
 						{
 							"_type": "UMLTextBoxView",
@@ -3560,9 +3546,9 @@
 								"$ref": "AAAAAAFF+qBtyKM79qY="
 							},
 							"font": "Arial;13;0",
-							"left": 752,
+							"left": 656,
 							"top": 664,
-							"width": 249,
+							"width": 345,
 							"height": 369
 						},
 						{
@@ -3614,8 +3600,8 @@
 							},
 							"fillColor": "#91ffec",
 							"font": "Arial;13;0",
-							"left": 1760,
-							"top": 536,
+							"left": 1064,
+							"top": 1120,
 							"width": 401,
 							"height": 25,
 							"text": "MicroService_HttpVerb_Controller_Metod(InParam) : Returtyp"
@@ -3653,39 +3639,11 @@
 							},
 							"fillColor": "#91ffec",
 							"font": "Arial;13;0",
-							"left": 992,
+							"left": 1000,
 							"top": 674,
 							"width": 481,
 							"height": 25,
 							"text": "ProductCatalog_HttpGet_Product_GetAllProducts() : IEnumerable(Product)"
-						},
-						{
-							"_type": "UMLTextBoxView",
-							"_id": "AAAAAAF9KJKa+KLPFQU=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"fillColor": "#91ffec",
-							"font": "Arial;13;0",
-							"left": 1000,
-							"top": 816,
-							"width": 736,
-							"height": 25,
-							"text": "Basket_HttpPost_Basket_CreateNewBasketForUser(Guid UserId)"
-						},
-						{
-							"_type": "UMLTextBoxView",
-							"_id": "AAAAAAF9KJLf9aLUCys=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"fillColor": "#91ffec",
-							"font": "Arial;13;0",
-							"left": 1000,
-							"top": 936,
-							"width": 736,
-							"height": 25,
-							"text": "Basket_HttpPost_BasketLine_AddItemToBasket(Guid basketId, Guid ItemId)"
 						},
 						{
 							"_type": "UMLTextBoxView",
@@ -3720,11 +3678,39 @@
 								"$ref": "AAAAAAFF+qBtyKM79qY="
 							},
 							"font": "Arial;13;0",
-							"left": 1000,
-							"top": 960,
-							"width": 736,
+							"left": 688,
+							"top": 912,
+							"width": 257,
 							"height": 100,
 							"text": "BasketLine:\npublic Guid BasketLineId { get; set; }\npublic Guid BasketId { get; set; }\npublic Guid ProductId { get; set; }\npublic int Price { get; set; }\npublic int Amount { get; set; }"
+						},
+						{
+							"_type": "UMLTextBoxView",
+							"_id": "AAAAAAF9a/Qoqk1U6Ao=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"fillColor": "#91ffec",
+							"font": "Arial;13;0",
+							"left": 1000,
+							"top": 816,
+							"width": 736,
+							"height": 25,
+							"text": "Basket_HttpPost_Basket_GetBasket(Guid basketId) : Basket"
+						},
+						{
+							"_type": "UMLTextBoxView",
+							"_id": "AAAAAAF9a/Sa701ZegY=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"fillColor": "#91ffec",
+							"font": "Arial;13;0",
+							"left": 1064,
+							"top": 1096,
+							"width": 401,
+							"height": 25,
+							"text": "BFF3 är ej modelerad här. Men den är osynlig map namnsättning."
 						}
 					]
 				},
