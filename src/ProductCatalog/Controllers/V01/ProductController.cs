@@ -21,6 +21,7 @@ namespace ProductCatalog.Controllers.V01
             _mapper = mapper;
         }
 
+
         [HttpGet("GetAllProducts")]
         //[AllowAnonymous]
         public ActionResult<List<Product>> GetAllProducts()
