@@ -34,8 +34,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway3", "src\APIGatew
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog", "src\ProductCatalog\ProductCatalog.csproj", "{4B3A2E31-1C36-47B4-8F5A-887530850F31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket", "src\Basket\Basket.csproj", "{8C601FFE-B2E4-4C9A-BD1A-2E1E5AAA2AED}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,10 +88,6 @@ Global
 		{4B3A2E31-1C36-47B4-8F5A-887530850F31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B3A2E31-1C36-47B4-8F5A-887530850F31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B3A2E31-1C36-47B4-8F5A-887530850F31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C601FFE-B2E4-4C9A-BD1A-2E1E5AAA2AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C601FFE-B2E4-4C9A-BD1A-2E1E5AAA2AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C601FFE-B2E4-4C9A-BD1A-2E1E5AAA2AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C601FFE-B2E4-4C9A-BD1A-2E1E5AAA2AED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,7 +105,6 @@ Global
 		{5647F34D-C90E-4123-AA11-B89925ED19A3} = {2DE31D98-F176-4D4B-ACFD-632CC29F44C9}
 		{A65AA59C-0CEC-4B5A-81CC-BFDF4569AB18} = {2DE31D98-F176-4D4B-ACFD-632CC29F44C9}
 		{4B3A2E31-1C36-47B4-8F5A-887530850F31} = {2DE31D98-F176-4D4B-ACFD-632CC29F44C9}
-		{8C601FFE-B2E4-4C9A-BD1A-2E1E5AAA2AED} = {2DE31D98-F176-4D4B-ACFD-632CC29F44C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {87418C65-DF4E-4DCE-9F4D-B325DC52B05D}
