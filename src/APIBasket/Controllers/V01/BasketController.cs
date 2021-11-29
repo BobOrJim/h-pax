@@ -29,10 +29,10 @@ namespace APIBasket.Controllers.V01
         public ActionResult<Basket> GetBasket(Guid UserGuid)
         {
 
-            //List<Product> result = _IproductCatalogRepository.ReadAllProducts();
-            //return Ok(_mapper.Map<List<Models.ProductDto>>(result));
+            Basket result = new Basket(); // _IproductCatalogRepository.ReadAllProducts();
+            
+            return Ok(_mapper.Map<Models.BasketDto>(result));
 
-            return new Basket();
         }
     }
 }
