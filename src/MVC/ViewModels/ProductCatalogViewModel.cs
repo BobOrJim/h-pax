@@ -16,8 +16,7 @@ namespace MVC.ViewModels
         public List<Product> Products { get; set; }
 
 
-        //Inherit?
-        public Basket basket { get; set; } = new();
+        public Basket basket { get; set; }
 
     }
 }

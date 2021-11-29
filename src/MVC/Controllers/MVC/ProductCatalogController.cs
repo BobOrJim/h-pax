@@ -55,34 +55,53 @@ namespace MVC.Controllers
 
 
 
+        //NÄR USER KLICKAR PÅ ATT PRODUCT
         //1: User skall skickas till IDP (Klart, görs automatiskt med authorize)
         //2: User tilldelas en guid cookie av idp (klart)
-        //3: guid läses från cookie
+        //3: guid läses från cookie (Klart)
+        //4: Bygga basket.cs o basketlines i MVC (Klart)
 
-        //Kolla om det finns en basket i session storage
-        //Om det inte finns en basket så skapar vi en.
-        //4: guid skickas i anrop till basket microservice, som returnerar en basket.
-        //5: Ett item lägs i basket
-        //6: Basket sparas i session storage med guid som key.basket sparas även i viewmodel.
+
+        //5: Kolla om det finns en basket i session storage där jag använder user guid som nyckel.
+            //6: Om det inte finns en basket så anropas Basket-microservice där en basket tas emot, anrop sker via BFF3. (user guid skickas)
+        //7: Ett item lägs i basket
+        //8: Basket sparas i session storage med guid som key OCH basket sparas också i viewmodel.
+        //9. Om item finns skall antal ökas, annas skapas ny basketLines.
+        //9: Uppdatera StarUML.
+
+        //20. Checkout knapp till checkout meny
+        //30. Apply coupon i checkout meny (verifiera mot checkout service)
+        //40. Checkot (skicka till backet för permanent storage, och vidare i systemet.
+
 
         [HttpPost("AddProductToBasket")]
         [Authorize]
         public async Task<IActionResult> AddProductToBasket(ProductCatalogViewModel productCatalogViewModel, Guid Id)
         {
+            var b = 12;
 
             string UserGuidAndSessionKey = ReadCookie(IDPCreatedCookieName);
+            ProductCatalogViewModel newProductCatalogViewModel = null;
 
             //Load Session
-            ProductCatalogViewModel newProductCatalogViewModel = LoadSessionStorage();
+            newProductCatalogViewModel = LoadSessionStorage() ?? new();
 
-            
+            if (newProductCatalogViewModel.basket == null)
+            {
+                var asdfa = 12;
+                //newProductCatalogViewModel = //anrop här till Basket service
+
+            }
+
             //Append text
             //var stuff = test.basket.BasketLines.Add(new BasketLine());
+            var c = 12;
             //Save Session
             //if (HttpContext.Request.Cookies.ContainsKey(IDPCreatedCookieName))
             //{
             //    HttpContext.Session.SetString(ReadCookie(IDPCreatedCookieName), JsonSerializer.Serialize(newStorageViewModel));
             //}
+
 
             var a = 12;
 
@@ -93,20 +112,21 @@ namespace MVC.Controllers
             return View("ProductCatalog", productCatalogViewModel);
         }
 
+
         public ProductCatalogViewModel LoadSessionStorage()
         {
             ProductCatalogViewModel productCatalogViewModel = new();
-            //Load SessionStorage using Id in cookie.
-            if (HttpContext.Request.Cookies.ContainsKey(IDPCreatedCookieName))
+            if (HttpContext.Request.Cookies.ContainsKey(IDPCreatedCookieName)) //Load SessionStorage using Id in cookie.
             {
                 string sessionKey = ReadCookie(IDPCreatedCookieName);
                 string sessionString = HttpContext.Session.GetString(sessionKey);
                 if (!String.IsNullOrEmpty(sessionString))
                 {
                     productCatalogViewModel = JsonSerializer.Deserialize<ProductCatalogViewModel>(sessionString);
+                    return productCatalogViewModel;
                 }
             }
-            return productCatalogViewModel;
+            return null;
         }
 
 
@@ -114,8 +134,6 @@ namespace MVC.Controllers
         {
             return Request.Cookies[key];
         }
-
-
         public async Task<HttpResponseMessage> CallURLWithAccessToken(string url, string accessToken)
         {
             UpdateInMemoryTokenRepo();

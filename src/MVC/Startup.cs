@@ -18,6 +18,16 @@ namespace MVC
     {
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(3600);
+                options.Cookie.HttpOnly = true; //True = prevent client-side JS from accessing the cookie vlaue
+                options.Cookie.IsEssential = true; //True = only HTTPS
+            });
+
+
+
             //Vi kommer få både access och id token.
             services.AddAuthentication(config => {
                 config.DefaultScheme = "mvc_client_cookie"; //Vi kör aspnet default förutom utmaningen nedan
@@ -76,6 +86,8 @@ namespace MVC
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
