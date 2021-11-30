@@ -28,6 +28,7 @@ namespace APIBasket.Controllers.V01
         [HttpPost("GetBasket")]
         public ActionResult<Basket> GetBasket(Guid UserGuid)
         {
+            var a = 12;
 
             Basket result = new Basket(); // _IproductCatalogRepository.ReadAllProducts();
             

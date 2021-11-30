@@ -20,6 +20,7 @@ using Common;
 using MVC.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
+using System.Text;
 
 namespace MVC.Controllers
 {
@@ -44,7 +45,7 @@ namespace MVC.Controllers
         {
             ProductCatalogViewModel productCatalogViewModel = new();
 
-            HttpResponseMessage httpResponseMessage = await CallURLWithAccessToken(uri.APIGateway3 + "api/V01/ProductCatalog/GetAllProducts", await HttpContext.GetTokenAsync("access_token"));
+            HttpResponseMessage httpResponseMessage = await CallURLWithAccessToken(uri.APIGateway3 + "api/V01/Shopping/GetAllProducts", await HttpContext.GetTokenAsync("access_token"));
             string dataAsString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             productCatalogViewModel.RawDataFromHttpResponse = dataAsString;
             List<Product> stuff = System.Text.Json.JsonSerializer.Deserialize<List<Product>>(dataAsString, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -56,11 +57,44 @@ namespace MVC.Controllers
         public async Task<Basket> AskGateway3_GetBasket(Guid guid)
         {
             //ProductCatalogViewModel productCatalogViewModel = new();
+            var ddssd = 12;
 
-            HttpResponseMessage httpResponseMessage = await CallURLWithAccessToken(uri.APIGateway3 + "api/V01/ProductCatalog/GetBasket", await HttpContext.GetTokenAsync("access_token"));
+
+
+            UpdateInMemoryTokenRepo();
+            await UseRefreshTokenIfAccessTokenIsOld();
+            UpdateInMemoryTokenRepo();
+            var httpClient = _httpClientFactory.CreateClient();
+            httpClient.SetBearerToken(await HttpContext.GetTokenAsync("access_token"));
+
+
+
+            //var data = new Dictionary<string, string>
+            //{
+            //    {"id","72832"},
+            //    {"name","John"}
+            //};
+
+            string data = "asdf";
+            
+            
+
+
+            var jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            HttpContent contentData = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var eded = 12;
+
+            HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(uri.APIGateway3 + "api/V01/Shopping/GetBasket", contentData);
+            
+
+
+            var a = 12;
+
             string dataAsString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-            
-            
+
+            var b = 12;
+
             var stuff = System.Text.Json.JsonSerializer.Deserialize<Basket>(dataAsString, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             var asdfasdf = 12;
@@ -77,9 +111,10 @@ namespace MVC.Controllers
         //3: guid läses från cookie (Klart)
         //4: Bygga basket.cs o basketlines i MVC (Klart)
         //5: Kolla om det finns en basket i session storage där jag använder user guid som nyckel.
-
         //5.5 Build and seed the Basket db.
-        //6: Om det inte finns en basket så anropas Basket-microservice där en basket tas emot, anrop sker via BFF3. (user guid skickas)
+
+        //6: Om det inte finns en basket så anropas AskGateway3_GetBasket(Guid guid) för att få en ny basket
+        //6.5 BFF3 anropar Basket-microservice (user guid skickas) för att få en ny basket.
         //7: Ett item lägs i basket
         //8: Basket sparas i session storage med guid som key OCH basket sparas också i viewmodel.
         //9. Om item finns skall antal ökas, annas skapas ny basketLines.
@@ -107,6 +142,7 @@ namespace MVC.Controllers
             {
                 var asdfa = 12;
                 newProductCatalogViewModel.basket = AskGateway3_GetBasket(Guid.Parse(UserGuidAndSessionKey)).GetAwaiter().GetResult();
+
                 var banan = 12;
             }
 
