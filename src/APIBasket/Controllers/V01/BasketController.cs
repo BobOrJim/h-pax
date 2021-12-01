@@ -16,23 +16,29 @@ namespace APIBasket.Controllers.V01
     public class BasketController : ControllerBase
     {
 
-        //private readonly IProductCatalogRepository _IproductCatalogRepository;
+        //private readonly IBasketRepository _IBasketRepository;
         private readonly IMapper _mapper;
 
         public BasketController(IMapper mapper)
         {
-            //_IproductCatalogRepository = productCatalogRepository;
+            //_IBasketRepository = basketRepository;
             _mapper = mapper;
         }
 
-        [HttpPost("GetBasket")]
-        public ActionResult<Basket> GetBasket(Guid UserGuid)
-        {
-            var a = 12;
 
-            Basket result = new Basket(); // _IproductCatalogRepository.ReadAllProducts();
-            
-            return Ok(_mapper.Map<Models.BasketDto>(result));
+
+        //Im going for a few shortcuts here, this endpoint is basically a dummy,  need to get this demo running asap so i can move on to milestone 3 where the fun stuff will happen.
+        [HttpPost("GetBasket")]
+        public ActionResult<Basket> GetBasket([FromBody] string userGuid)
+        {
+            Basket newBasket = new Basket();
+
+            Guid User = Guid.Parse(userGuid);
+            newBasket.UserId = User;
+            newBasket.BasketId = Guid.NewGuid();
+            newBasket.BasketLines = new List<BasketLine>();
+
+            return Ok(_mapper.Map<Models.BasketDto>(newBasket));
 
         }
     }

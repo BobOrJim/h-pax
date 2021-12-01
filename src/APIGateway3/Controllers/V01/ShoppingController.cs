@@ -40,45 +40,18 @@ namespace APIGateway3.Controllers.V01
 
         
         
-        //[HttpPost]
-        //public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         [HttpPost("GetBasket")]
-        //[Authorize(Roles = "Admin")]
-        [AllowAnonymous]
-//        public async Task<IActionResult> GetBasket([FromBody] Dictionary<string, string> guid)
-        public async Task<IActionResult> GetBasket([FromBody] string guid)
+        [Authorize(Roles = "Admin, User")]
+        //[AllowAnonymous]
+        public async Task<IActionResult> GetBasket([FromBody] string userGuid)
         {
-
-            var a = 12;
-
             var BasketClient = _httpClientFactory.CreateClient().HttpClientPrep(uri.Basket, null);
-            //var jsonStr = JsonSerializer.Serialize(MyObject)
-            //var weatherForecast = JsonSerializer.Deserialize<MyObject>(jsonStr);
-            //, "application/json"
 
+            HttpContent contentData = new StringContent(JsonSerializer.Serialize<string>(userGuid), Encoding.UTF8, "application/json");
+            HttpResponseMessage httpResponseMessage = await BasketClient.PostAsync("api/V01/Basket/GetBasket", contentData);
+            string dataAsString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-            //string json = JsonConvert.SerializeObject(dicti, Formatting.Indented);
-            //var httpContent = new StringContent(json);
-
-            // PostAsync returns a Task<httpresponsemessage>
-            //var httpResponce = Helper.Client.PostAsync(path, httpContent).Result;
-
-
-            var b = 12;
-
-            var stringContent = new StringContent(JsonSerializer.Serialize(guid), Encoding.UTF8);
-            //string json = JsonConvert.SerializeObject(dicti, Formatting.Indented);
-            //var httpContent = new StringContent(stringContent);
-
-            var d = 12;
-            var SecretResponse = await BasketClient.PostAsync("api/V01/Basket/GetBasket", stringContent);
-            var c = 12;
-
-            return Ok(await SecretResponse.Content.ReadAsStringAsync());
+            return Ok(dataAsString);
         }
-
-
-
-
     }
 }

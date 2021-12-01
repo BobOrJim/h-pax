@@ -14,8 +14,9 @@ namespace Common
         public static readonly string API_Mountain  = "https://localhost:44381/";
         public static readonly string ProductCatalog = "https://localhost:44343/";
         public static readonly string APIGateway3 = "https://localhost:44387/";
-        public static readonly string Basket = "https://localhost:44304/";
+        public static readonly string Basket = "https://localhost:44336/";
 
+        //https://localhost:44336/
 
         //public static string API_Desert { get; } = "https://localhost:44361/";
         //public static string API_Forest { get; } = "https://localhost:44380/";
